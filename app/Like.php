@@ -15,6 +15,6 @@ class Like extends Model
     }
     //Relación de muchos a uno con imagen
     public function image(){
-        return $this->belongsTo('App\User', 'image_id');
+        return $this->belongsTo('App\Image', 'image_id');
     }
 }

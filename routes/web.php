@@ -43,3 +43,4 @@ Route::post('/user/change_pass', 'UserController@change_pass')->name('user.chang
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
 Route::get('/subir-imagen', 'ImageController@create')->name('image.create');
 Route::post('/image/save', 'ImageController@save')->name('image.save');
+Route::get('/image/file/{filename}', 'ImageController@getImage')->name('image.file');

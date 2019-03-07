@@ -22,7 +22,7 @@ class Image extends Model
     
     //Relación de muchos a uno con usuario
     
-    public function like(){
+    public function user(){
         return $this->belongsTo('App\User', 'user_id');
     }
 }
