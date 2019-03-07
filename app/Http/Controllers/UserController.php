@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
 class UserController extends Controller {
+    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function config() {
         return view('user.config');
@@ -91,6 +97,11 @@ class UserController extends Controller {
             return redirect()->route('config_pass')
                             ->with(['message_pass_error' => 'Las contraseñas no coinciden']);
         }
+    }
+    
+    public function getImage($filename){
+        $file = Storage::disk('users')->get($filename);
+        return new Response($file, 200);
     }
 
 }
