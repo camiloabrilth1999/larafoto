@@ -38,3 +38,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/configuracion', 'UserController@config')->name('config');
 Route::post('/user/update', 'UserController@update')->name('user.update');
+Route::get('/configuracion/password', 'UserController@config_pass')->name('config_pass');
+Route::post('/user/change_pass', 'UserController@change_pass')->name('user.change_pass');
