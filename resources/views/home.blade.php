@@ -16,13 +16,16 @@
                     </div>
                     @endif
                     <div class="data-user">
-                        {{$image->user->nick}}
-
+                        <a href="">
+                            {{$image->user->nick}}
+                        </a>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="image-container">
-                        <img src="{{ route('image.file', ['filename' => $image->image_path]) }}">    
+                        <a href="{{ route('image.detail', ['id' => $image->id]) }}">
+                            <img src="{{ route('image.file', ['filename' => $image->image_path]) }}">  
+                        </a>
                     </div>
                     <div class="likes">
                         <img src="{{ asset('img/heart_black.png') }}">
@@ -37,6 +40,10 @@
                         <a href="" class="btn btn-sm btn-warning btn-comments">
                             Comentarios ({{count($image->comments)}})
                         </a>
+                    </div>
+                    
+                    <div class="time">
+                        <span class="date">{{\FormatTime::LongTimeFilter($image->created_at) }}</span>
                     </div>
                 </div>
             </div>
