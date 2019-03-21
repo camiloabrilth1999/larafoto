@@ -28,7 +28,21 @@
                         </a>
                     </div>
                     <div class="likes">
-                        <img src="{{ asset('img/heart_black.png') }}">
+                        <?php $user_like = false; ?>
+                        <!--Comprobar si el usuario le dio like a la imagen-->
+                        @foreach($image->likes as $like)
+                            @if($like->user->id == Auth::user()->id)
+                                <?php $user_like = true; ?>
+                            @endif
+                        @endforeach
+
+                        @if($user_like)
+                            <img src="{{ asset('img/heart_red.png') }}" data-id="{{ $image->id }}" class="btn-dislike">
+                        @else
+                            <img src="{{ asset('img/heart_black.png') }}" data-id="{{ $image->id }}" class="btn-like">
+                        @endif
+                        <!--Contar los like en la publicación-->
+                        <span class="number_likes">{{ count($image->likes) }}</span>
                     </div>
 
                     <div class="description">
@@ -41,7 +55,7 @@
                             Comentarios ({{count($image->comments)}})
                         </a>
                     </div>
-                    
+
                     <div class="time">
                         <span class="date">{{\FormatTime::LongTimeFilter($image->created_at) }}</span>
                     </div>
