@@ -24,13 +24,29 @@
                         <img src="{{ route('image.file', ['filename' => $image->image_path]) }}">    
                     </div>
                     <div class="likes">
-                        <img src="{{ asset('img/heart_black.png') }}">
+                        <?php $user_like = false; ?>
+                        <!--Comprobar si el usuario le dio like a la imagen-->
+                        @foreach($image->likes as $like)
+                            @if($like->user->id == Auth::user()->id)
+                                <?php $user_like = true; ?>
+                            @endif
+                        @endforeach
+
+                        @if($user_like)
+                            <img src="{{ asset('img/heart_red.png') }}" data-id="{{ $image->id }}" class="btn-dislike">
+                        @else
+                            <img src="{{ asset('img/heart_black.png') }}" data-id="{{ $image->id }}" class="btn-like">
+                        @endif
+                        <!--Contar los like en la publicación-->
+                        <span class="number_likes">{{ count($image->likes) }}</span>
                     </div>
 
                     <div class="description">
                         <span class="nickname">{{ $image->user->nick }}</span> 
                         <p>{{ $image->description }}</p>
                     </div>
+
+                    
                     <div class="clearfix"></div>
                     <div class="comments">
                         <hr>
