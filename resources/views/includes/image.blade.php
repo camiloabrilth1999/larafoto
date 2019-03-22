@@ -7,7 +7,7 @@
         </div>
         @endif
         <div class="data-user">
-            <a href="">
+            <a href="{{ route('profile', ['id' => $image->user->id]) }}">
                 {{$image->user->nick}}
             </a>
         </div>
